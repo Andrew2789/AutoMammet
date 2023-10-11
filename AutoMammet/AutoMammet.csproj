@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Authors>Rietty</Authors>
+    <Authors>Andrew2789</Authors>
     <Company>N/A</Company>
-    <Version>1.4.1.2</Version>
+    <Version>1.5</Version>
     <Description>Provides an easy copy and pastable CSV format you can use for island sanctuary spreadsheets.</Description>
     <Copyright>N/A</Copyright>
-    <PackageProjectUrl>https://github.com/Rietty/AutoMammet</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/Andrew2789/AutoMammet</PackageProjectUrl>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -40,7 +40,7 @@
     </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="DalamudPackager" Version="2.1.10" />
+    <PackageReference Include="DalamudPackager" Version="2.1.12" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
     <Reference Include="FFXIVClientStructs">
       <HintPath>$(DalamudLibPath)FFXIVClientStructs.dll</HintPath>

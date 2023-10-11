@@ -1,6 +1,7 @@
 using Dalamud.Game.Command;
 using Dalamud.IoC;
 using Dalamud.Plugin;
+using Dalamud.Plugin.Services;
 using Dalamud.Interface.Windowing;
 using AutoMammet.Windows;
 using System.IO;
@@ -9,17 +10,19 @@ namespace AutoMammet
 {
     public sealed class Plugin : IDalamudPlugin
     {
-        public string Name => "AutoMammet";
+        public string Name => "AutoMammetFix";
         private const string CommandName = "/mammet";
 
         private DalamudPluginInterface PluginInterface { get; init; }
-        private CommandManager CommandManager { get; init; }
+        private ICommandManager CommandManager { get; init; }
         public Configuration Configuration { get; init; }
-        public WindowSystem WindowSystem = new("AutoMammet");
+        public WindowSystem WindowSystem = new("AutoMammetFix");
+
+        public Window window;
 
         public Plugin(
             [RequiredVersion("1.0")] DalamudPluginInterface pluginInterface,
-            [RequiredVersion("1.0")] CommandManager commandManager)
+            [RequiredVersion("1.0")] ICommandManager commandManager)
         {
             this.PluginInterface = pluginInterface;
             this.CommandManager = commandManager;
@@ -30,7 +33,8 @@ namespace AutoMammet
             string valueMappingPath = Path.Combine(PluginInterface.AssemblyLocation.Directory?.FullName!, "AutoMammetValueMapping.json");
 
             Reader reader = new Reader(this.PluginInterface, this);
-            WindowSystem.AddWindow(new MainWindow(this, reader, valueMappingPath));
+            window = new MainWindow(this, reader, valueMappingPath);
+            WindowSystem.AddWindow(window);
 
             this.CommandManager.AddHandler(CommandName, new CommandInfo(OnCommand)
             {
@@ -49,7 +53,7 @@ namespace AutoMammet
 
         private void OnCommand(string command, string args)
         {
-            WindowSystem.GetWindow("AutoMammet - Felicitous Furball!").IsOpen = true;
+            window.IsOpen = true;
         }
 
         private void DrawUI()

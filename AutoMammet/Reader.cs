@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Dalamud;
 using Dalamud.Plugin;
-using System.Reflection;
+using System.Reflection.Emit;
 using Dalamud.Utility.Signatures;
 using Lumina.Excel.GeneratedSheets;
 using Lumina.Excel;
@@ -32,7 +32,7 @@ namespace AutoMammet
         public Reader(DalamudPluginInterface pluginInterface, Plugin plugin)
         {
             Dalamud.Initialize(pluginInterface);
-            SignatureHelper.Initialise(this);
+            //SignatureHelper.Initialise(this);
 
             this.config = plugin.Configuration;
 
